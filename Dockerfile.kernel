@@ -1,0 +1,8 @@
+FROM julitopower/python36emacs25elpy
+
+ADD kernel /opt/kernel
+WORKDIR /opt/kernel
+RUN python -m pip install -r requirements.txt
+
+WORKDIR /opt/src/
+CMD ["jupyter", "kernelgateway", "--KernelGatewayApp.ip=0.0.0.0"]

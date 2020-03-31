@@ -4,7 +4,13 @@ ADD server /opt/server
 WORKDIR /opt/server
 RUN python -m pip install -r requirements.txt
 
-RUN jupyter serverextension enable --py nb2kg --sys-prefix
+# Install nodejs 10.x
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN apt-get install -y nodejs
+
+RUN jupyter serverextension enable --py nb2kg --sys-prefix && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
 
 WORKDIR /opt/src
 CMD ["jupyter", "notebook", \

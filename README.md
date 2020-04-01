@@ -10,10 +10,11 @@ This project uses docker-compose to create a stack with a Jupyter notebook serve
 
 ## The easy way
 
-To get jupyterlab up and running with the jupyterlab extension execution the following:
+To get jupyterlab up and running with a jupyterlab extension and a custom ipywidget, execute the following
 
 ```bash
-make load
+make load EXT=test_ext
+make loadwidget EXT=test_widget
 ```
 
 This will build two containers, ```jupyter-server``` and ```jupyter-kernel```, will build and install the jupyterlab extension, and will start jupyterlab. The directory containing this README.md file gets mounted in both containers under ```/opt/dev/```.
@@ -30,7 +31,12 @@ to obtain the token to login into the Jupyter server execute:
 make token
 ```
 
-The custom extension simply writes a message in the javascript console in your browser.
+The custom extension simply writes a message in the javascript console in your browser. To test the custom ipywidget create a new notebook and type
+
+```python
+import test_widget as tw
+tw.HelloWorld()
+```
 
 ## Deatailed getting started
 

@@ -1,0 +1,2 @@
+recursive-include test_widget/static *.*
+include test_widget.json
